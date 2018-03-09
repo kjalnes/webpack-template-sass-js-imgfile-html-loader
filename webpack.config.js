@@ -55,10 +55,14 @@ module.exports = {
         ]
     },
     plugins: [
-        extractPlugin,
-        new HtmlWebpackPlugin({
+        new webpack.ProvidePlugin({ // to enable jquery
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
+        extractPlugin, // to extract css into own file
+        new HtmlWebpackPlugin({ // to create the html file
             template: 'client/src/index.html'
         }),
-        new CleanWebPackPlugin(['dist'])
+        new CleanWebPackPlugin(['dist']) // to remove dist folder before each build
     ]
 };
